@@ -7,7 +7,7 @@ RUN npm run build
 
 FROM nginx
 EXPOSE 80
-# new ^^^ setting: for testing
+# working ^^^ without above line on ...elasticbeanstalk.com/
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # to run, in wsl terminal type:
