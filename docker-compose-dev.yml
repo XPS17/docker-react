@@ -1,0 +1,43 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - ~/frontend:/home/node/app
+  # tests:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - /home/node/app/node_modules
+  #     - ~/frontend:/home/node/app
+  #   command: ["npm", "run", "test"]
+
+# Going forward you will need to pass a flag to specify which compose file you want to build and run from:
+# docker-compose -f docker-compose-dev.yml up
+# docker-compose -f docker-compose-dev.yml up --build
+# docker-compose -f docker-compose-dev.yml down
+
+# to run tests
+# docker exec -it a2b0399a1867 npm run test
+
+# docker-compose up --build
+
+# *original in video
+# - /app/node_modules
+# - .:/app
+
+# *correct one
+# - /home/node/app/node_modules
+# - ~/frontend:/home/node/app
+
+# manual command:
+# docker run -it -p 3000:3000 -v /home/node/app/node_modules -v ~/frontend:/home/node/app xps17/frontend
+
+# command to run it in wsl terminal:
+# docker-compose up
